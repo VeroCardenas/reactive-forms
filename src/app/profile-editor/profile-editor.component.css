@@ -1,0 +1,32 @@
+/* ProfileEditorComponent's private CSS styles */
+
+form {
+  padding-top: 1rem;
+}
+
+.form {
+  display: block;
+  margin: .5em 0;
+  font-weight: bold;
+}
+
+
+.container-aliases {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.delete {
+  color: #b70514;
+  cursor: pointer;
+}
+
+.child-alias {
+  display: flex;
+  flex-direction: row;
+}
+
+.child-alias input {
+  height: max-content;
+}

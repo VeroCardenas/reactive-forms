@@ -1,0 +1,50 @@
+
+
+<ng-container *ngIf="errors&&canShow()">
+  <label *ngIf="errors.required" class='alert'>{{"El campo es obligatorio"}}
+  </label>
+  <label *ngIf="errors.maxlength" class='alert'>
+    {{'La longitud máxima es ' +errors.maxlength.requiredLength+ ' caracteres'}}
+  </label>
+  <label *ngIf="errors.minlength" class='alert'>
+    {{'La longitud mínima es '+errors.minlength.requiredLength+' caracteres'}}
+  </label>
+  <label *ngIf="errors.dateOfIssue" class='alert'>
+    {{errors.dateOfIssue.detail}}
+  </label>
+  <label *ngIf="errors.authorizationDate" class='alert'>
+    {{errors.authorizationDate.detail}}
+  </label>
+  <label *ngIf="errors.specialChars" class='alert'>
+    {{'No debe ingresar caracteres especiales'}}
+  </label>
+  <label *ngIf="errors.sku" class='alert'>
+    {{'Debe ingresar números con el siguiente formato xx.xxxxxx.xxxx'}}
+  </label>
+  <label *ngIf="errors.onlyNumbers" class='alert'>
+    {{'Debe ingresar solo números '}}
+  </label>
+  <label *ngIf="errors.usernameAlreadyExists" class='alert'>
+    {{'El usuario ya existe'}}
+  </label>
+  <label *ngIf="errors.minAliases" class='alert'>
+    {{'Debe llenar mínimo: ' +errors.minAliases.min+' aliases'}}
+  </label>
+  <label *ngIf="errors.maxAliases" class='alert'>
+    {{'Debe llenar máximo: '+errors.maxAliases.max +' aliases'}}
+  </label>
+
+</ng-container>
+<br>
+<ng-container *ngIf="showDetails">
+  <p-tag styleClass="mr-2" [severity]="pristine?'success':'info'" [value]="'PRISTINE'"></p-tag>
+  <p-tag styleClass="mr-2" [severity]="dirty?'danger':'info'" [value]="'DIRTY'"></p-tag>
+  <p-tag styleClass="mr-2" [severity]="touched?'warning':'info'" [value]="'TOUCHED'"></p-tag>
+  <p *ngIf="false">Errors:{{errors|json}}</p>
+</ng-container>
+
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+
+  </ng-template>
+</p-overlayPanel>
