@@ -3,19 +3,23 @@
   <label for="binary">Mostrar detalles de validaciones</label>
   <br>
   <br>
-  <label>Mostrar errores cuando:</label>
-  <div *ngFor="let category of categories" class="field-checkbox">
-    <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="whenShow">
-    </p-radioButton>
-    <label [for]="category">{{' ' +category}}</label>
-  </div>
+  <label>Estado actual del formulario  </label>
+  <p-tag styleClass="mr-2" [severity]="profileForm.status==='VALID'?'success':'info'" value="VALID"></p-tag>
+  <p-tag styleClass="mr-2" [severity]="profileForm.status==='INVALID'?'danger':'info'" value="INVALID"></p-tag>
+  <p-tag styleClass="mr-2" [severity]="profileForm.status==='PENDING'?'warning':'info'" value="PENDING"></p-tag>
   <br>
 
-  <label>Estado actual del comprobante</label>
+
+
   <ng-container *ngIf="showDetsValidations">
-    <p-tag styleClass="mr-2" [severity]="profileForm.status==='VALID'?'success':'info'" value="VALID"></p-tag>
-    <p-tag styleClass="mr-2" [severity]="profileForm.status==='INVALID'?'danger':'info'" value="INVALID"></p-tag>
-    <p-tag styleClass="mr-2" [severity]="profileForm.status==='PENDING'?'warning':'info'" value="PENDING"></p-tag>
+    <label>Mostrar errores cuando:</label>
+    <div *ngFor="let category of categories" class="field-checkbox">
+      <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="whenShow">
+      </p-radioButton>
+      <label [for]="category">{{' ' +category}}</label>
+    </div>
+    <br>
+
   </ng-container>
 
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
