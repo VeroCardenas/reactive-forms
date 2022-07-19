@@ -21,11 +21,10 @@ export class ProfileEditorComponent {
     userName: new FormControl('', [Validators.required], [AsyncCuatomValidation.userValidation(this.userService)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('',[Validators.required]),
+    dateStart: new FormControl('',[Validators.required, CustomValidations.dateStart()]),
     address: this.fb.group({
       street: ['', [Validators.maxLength(100)]],
       city: ['', Validators.maxLength(50)],
-      state: ['', Validators.maxLength(50)],
-      zip: ['']
     }),
     aliases: this.fb.array([
       this.fb.control('', [Validators.required])
@@ -54,7 +53,8 @@ export class ProfileEditorComponent {
   }
 
   addAlias() {
-    this.aliases.push(this.fb.control('', Validators.required));
+    this.aliases.push(this.fb.control('', [Validators.required]));
+    console.log(this.aliases)
   }
 
   onSubmit() {

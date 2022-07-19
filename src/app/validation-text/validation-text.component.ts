@@ -22,51 +22,51 @@ export class ValidationTextComponent implements OnInit {
 
   get errors(){
     if (this.controlName){
-      return this.form?.controls?.[this.controlName]?.errors
+      return this.form.controls[this.controlName]?.errors
     } else {
-      return this.form?.errors
+      return this.form.errors
     }
   }
 
   get statusModification(){
     if (this.controlName){
-      return this.form?.controls?.[this.controlName]?.touched
+      return this.form.controls?.[this.controlName]?.touched
     } else {
-      return this.form?.dirty
+      return this.form.dirty
     }
   }
 
   canShow (){
     if (this.controlName){
-      return this.form?.controls?.[this.controlName]?.[this.whenShow]
+      return this.form.controls?.[this.controlName]?.[this.whenShow]
     } else {
-      return this.form?.[this.whenShow]
+      return this.form[this.whenShow]
     }
 
   }
 
   get touched (){
     if (this.controlName){
-      return this.form?.controls?.[this.controlName]?.touched
+      return this.form.controls?.[this.controlName]?.touched
     } else {
-      return this.form?.touched
+      return this.form.touched
     }
 
   }
 
   get dirty (){
     if (this.controlName){
-      return this.form?.controls?.[this.controlName]?.dirty
+      return this.form.controls?.[this.controlName]?.dirty
     } else {
-      return this.form?.dirty
+      return this.form.dirty
     }
 
   }
   get pristine (){
     if (this.controlName){
-      return this.form?.controls?.[this.controlName]?.pristine
+      return this.form.controls?.[this.controlName]?.pristine
     } else {
-      return this.form?.pristine
+      return this.form.pristine
     }
 
   }

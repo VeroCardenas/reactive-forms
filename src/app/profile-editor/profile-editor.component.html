@@ -7,83 +7,80 @@
   <div *ngFor="let category of categories" class="field-checkbox">
     <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="whenShow">
     </p-radioButton>
-    <label [for]="category">{{'  ' +category}}</label>
+    <label [for]="category">{{' ' +category}}</label>
   </div>
   <br>
 
   <label>Estado actual del comprobante</label>
-<ng-container *ngIf="showDetsValidations">
-  {{profileForm.status}}
-  <p-tag styleClass="mr-2" [severity]="profileForm.status==='VALID'?'success':'info'" value="VALID"></p-tag>
-  <p-tag styleClass="mr-2" [severity]="profileForm.status==='INVALID'?'danger':'info'" value="INVALID"></p-tag>
-  <p-tag styleClass="mr-2" [severity]="profileForm.status==='PENDING'?'warning':'info'" value="PENDING"></p-tag>
-</ng-container>
+  <ng-container *ngIf="showDetsValidations">
+    <p-tag styleClass="mr-2" [severity]="profileForm.status==='VALID'?'success':'info'" value="VALID"></p-tag>
+    <p-tag styleClass="mr-2" [severity]="profileForm.status==='INVALID'?'danger':'info'" value="INVALID"></p-tag>
+    <p-tag styleClass="mr-2" [severity]="profileForm.status==='PENDING'?'warning':'info'" value="PENDING"></p-tag>
+  </ng-container>
 
-<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <label class="form" for="user-name">User Name: </label>
-  <input id="user-name" type="text" formControlName="userName" required>
-  <app-validation-text [form]="profileForm" controlName="userName" [whenShow]="whenShow"
-    [showDetails]="showDetsValidations"></app-validation-text>
-
-  <label class="form"for="first-name">First Name: </label>
-  <input id="first-name" type="text" formControlName="firstName" required>
-  <app-validation-text [form]="profileForm" controlName="firstName" [whenShow]="whenShow"
-    [showDetails]="showDetsValidations"></app-validation-text>
-
-  <label class="form"for="last-name">Last Name: </label>
-  <input id="last-name" type="text" formControlName="lastName">
-  <app-validation-text [form]="profileForm" controlName="lastName" [whenShow]="whenShow"
-    [showDetails]="showDetsValidations"></app-validation-text>
-
-  <div formGroupName="address">
-    <h2>Address</h2>
-
-    <label class="form"for="street">Street: </label>
-    <input id="street" type="text" formControlName="street">
-    <app-validation-text [form]="profileForm" controlName="street" [whenShow]="whenShow"
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label class="form" for="user-name">Nombre de usuario: </label>
+    <input id="user-name" type="text" formControlName="userName" required>
+    <app-validation-text [form]="profileForm" controlName="userName" [whenShow]="whenShow"
       [showDetails]="showDetsValidations"></app-validation-text>
 
-    <label class="form"for="city">City: </label>
-    <input id="city" type="text" formControlName="city">
-    <app-validation-text [form]="profileForm" controlName="city" [whenShow]="whenShow"
+    <label class="form" for="first-name">Nombre: </label>
+    <input id="first-name" type="text" formControlName="firstName" required>
+    <app-validation-text [form]="profileForm" controlName="firstName" [whenShow]="whenShow"
       [showDetails]="showDetsValidations"></app-validation-text>
 
-    <label class="form"for="state">State: </label>
-    <input id="state" type="text" formControlName="state">
-    <app-validation-text [form]="profileForm" controlName="state" [whenShow]="whenShow"
+    <label class="form" for="last-name">Apellido: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+    <app-validation-text [form]="profileForm" controlName="lastName" [whenShow]="whenShow"
       [showDetails]="showDetsValidations"></app-validation-text>
 
-    <label class="form"for="zip">Zip Code: </label>
-    <input id="zip" type="text" formControlName="zip">
-    <app-validation-text [form]="profileForm" controlName="zip" [whenShow]="whenShow"
+
+    <label class="form">Fecha de activación</label>
+    <input id="date-start" formControlName="dateStart" type="date">
+    <app-validation-text [form]="profileForm" controlName="dateStart" [whenShow]="whenShow"
       [showDetails]="showDetsValidations"></app-validation-text>
-  </div>
 
-  <div formArrayName="aliases">
-    <h2>Aliases</h2>
-    <button type="button" (click)="addAlias()">+ Add another alias</button>
 
-    <div *ngFor="let alias of aliases.controls; let i=index">
-      <!-- The repeated alias template -->
-      <label class="form"for="alias-{{ i }}">Alias:</label>
-      <div class="container-aliases">
-        <div class="child-alias"><input id="alias-{{ i }}" type="text" [formControlName]="i">
-          <span class="material-icons delete" (click)="onDeleteRowBillArticle(i)">delete</span>
-        </div>
-        <div class="child-alias">
-          <app-validation-text [form]="alias" [controlName]="i" [whenShow]="whenShow"
-            [showDetails]="showDetsValidations"></app-validation-text>
+    <div formGroupName="address">
+      <h2>Dirección</h2>
+
+      <label class="form" for="street">Calle: </label>
+      <input id="street" type="text" formControlName="street">
+      <app-validation-text [form]="profileForm.controls.address" controlName="street" [whenShow]="whenShow"
+        [showDetails]="showDetsValidations"></app-validation-text>
+
+      <label class="form" for="city">Ciudad: </label>
+      <input id="city" type="text" formControlName="city">
+      <app-validation-text [form]="profileForm.controls.address" controlName="city" [whenShow]="whenShow"
+        [showDetails]="showDetsValidations"></app-validation-text>
+
+    </div>
+
+    <div formArrayName="aliases">
+      <h2>Sobernombres</h2>
+      <button type="button" (click)="addAlias()">+ Agregar otro sobrenombre</button>
+
+      <div *ngFor="let alias of aliases.controls; let i=index">
+        <!-- The repeated alias template -->
+        <label class="form" for="alias-{{ i }}">Sobrenombre:</label>
+        <div class="container-aliases">
+          <div class="child-alias"><input id="alias-{{ i }}" type="text" [formControlName]="i">
+            <span class="material-icons delete" (click)="onDeleteRowBillArticle(i)">delete</span>
+          </div>
+          <div class="child-alias">
+            <app-validation-text [form]="alias" [controlName]="null" [whenShow]="whenShow"
+              [showDetails]="showDetsValidations"></app-validation-text>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    <button type="submit" [disabled]="!profileForm.valid">Guardar</button>
+    <br>
+    <app-validation-text [form]="profileForm" [controlName]="null" [whenShow]="whenShow"
+      [showDetails]="showDetsValidations"></app-validation-text>
+  </form>
+
+
+
   <br>
-  <app-validation-text [form]="profileForm" [controlName]="null" [whenShow]="whenShow"
-    [showDetails]="showDetsValidations"></app-validation-text>
-</form>
-
-
-
-<br>
-<button *ngIf="false" type="button" (click)="updateProfile()">Update Profile</button>
+  <button *ngIf="false" type="button" (click)="updateProfile()">Update Profile</button>

@@ -13,7 +13,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CommonModule } from '@angular/common';
 import { RadioButtonModule } from 'primeng/radiobutton';
-
+import {CalendarModule} from 'primeng/calendar';
 
 
 
@@ -37,6 +37,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     CheckboxModule,
     CommonModule,
     RadioButtonModule,
+    CalendarModule,
   ],
   providers: [
     UserService,
