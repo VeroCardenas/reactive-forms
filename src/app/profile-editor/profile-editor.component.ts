@@ -18,10 +18,24 @@ export class ProfileEditorComponent {
 
 
   profileForm = new FormGroup({
-    userName: new FormControl('', [Validators.required], [AsyncCuatomValidation.userValidation(this.userService)]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('',[Validators.required]),
-    dateStart: new FormControl('',[Validators.required, CustomValidations.dateStart()]),
+    userName: new FormControl('',
+      [
+        Validators.required
+      ],
+      [
+        AsyncCuatomValidation.userValidation(this.userService)
+      ]),
+    firstName: new FormControl('',
+      [
+        Validators.required
+      ]),
+    lastName: new FormControl('',      [
+        Validators.required
+      ]),
+    dateStart: new FormControl('', [
+      Validators.required,
+      CustomValidations.dateStart()
+    ]),
     address: this.fb.group({
       street: ['', [Validators.maxLength(100)]],
       city: ['', Validators.maxLength(50)],
@@ -29,7 +43,7 @@ export class ProfileEditorComponent {
     aliases: this.fb.array([
       this.fb.control('', [Validators.required])
     ])
-  }, {validators: [CustomValidations.validationAliases(2,4)]});
+  }, { validators: [CustomValidations.validationAliases(2, 4)] });
 
   get aliases() {
     return this.profileForm.get('aliases') as FormArray;
